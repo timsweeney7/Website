@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.csrf_token }}
+        <b>{{ form.name.label }}:</b> {{ form.name(size=20) }}<br>
+        <b>{{ form.text.label }}:</b> {{ form.text }}<br>
+        {{ form.submit }}<br><br>
+    </form>
+    {% for post in home_feed %}
+        <b>{{ post.author }}:</b> {{ post.text }} <br>
+    {% endfor %}
+</body>
+</html>
