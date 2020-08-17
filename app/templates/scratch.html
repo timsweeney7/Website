@@ -11,6 +11,9 @@
     h1{
         background-color: thistle;
     }
+    img.picture_class{
+        width: 20%;
+     }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -30,7 +33,25 @@
             <td>And then, I'm just going to make a fourth column to test out Git.</td>
         </tr>
     </table>
-    <h1>Sup yo</h1>
+    <h1>hiiiiii elise</h1>
     <p>This is a paragraph.</p>
+
+    {# Standard image #}
+    {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros"> #}
+
+    {# sizing using width #}
+    {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100"> #}
+
+    {# sizing using height #}
+    {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" height="400"> #}
+
+    {# sizing using both #}
+    {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100" height="100"> #}
+
+    {# sizing using percentages and Styles #}
+    <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" class="picture_class"> <br><br>
+
+    {# adding another picture #}
+    <img  src="{{ url_for('static', filename='Screenshot (4).png') }}" alt="The bros" class="picture_class">
 </body>
 </html>

@@ -1,18 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <form method="post">
-        {{ form.csrf_token }}
-        <b>{{ form.name.label }}:</b> {{ form.name(size=20) }}<br>
-        <b>{{ form.text.label }}:</b> {{ form.text }}<br>
-        {{ form.submit }}<br><br>
-    </form>
-    {% for post in home_feed %}
-        <b>{{ post.author }}:</b> {{ post.text }} <br>
-    {% endfor %}
-</body>
-</html>
+{% extends 'header.html' %}
+
+<style>
+    table, td{border: 3px solid black;}
+    img {width:48px;height:48px;}
+    .fit-picture {
+        width: 250px;
+    }
+</style>
+
+{% block posts %}
+<table>
+    <tr>
+        <td>
+            <form method="post">
+                {{ form.csrf_token }}
+                <b>{{ form.name.label }}:</b> {{ form.name(size=20) }}<br>
+                <b>{{ form.text.label }}:</b> {{ form.text }}<br>
+                {{ form.submit }}<br><br>
+            </form>
+            {% for post in home_feed %}
+                <b>{{ post.author }}:</b> {{ post.text }} <br>
+            {% endfor %}
+        </td>
+
+        <td>
+            {# Standard image #}
+            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros"> #}
+
+            {# sizing using width #}
+            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100"> #}
+
+            {# sizing using height #}
+            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" height="100"> #}
+
+            {# sizing using both #}
+            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100" height="100"> #}
+        </td>
+
+         <td>
+            and then the spotify API here
+        </td>
+    </tr>
+</table>
+{% endblock %}

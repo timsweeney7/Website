@@ -1,3 +1,4 @@
+#####################################################################
 #
 #  This file is for defining the routing of the website and what urls do
 #
@@ -16,8 +17,7 @@ def home_page():
     if form.validate_on_submit():
         new_post = Post(form.name.data, form.text.data)
         home_feed.insert(0, new_post)
-    home_feed2 = home_feed
-    return render_template('home.html', home_feed=home_feed2, form=form)
+    return render_template('home.html', home_feed=home_feed, form=form)
 
 
 @app.route('/scratch', methods=['GET'])
