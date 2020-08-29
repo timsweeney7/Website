@@ -1,17 +1,9 @@
 {% extends 'header.html' %}
 
-<style>
-    table, td{border: 3px solid black;}
-    img {width:48px;height:48px;}
-    .fit-picture {
-        width: 250px;
-    }
-</style>
-
 {% block posts %}
 <table>
     <tr>
-        <td>
+        <td class="side">
             <form method="post">
                 {{ form.csrf_token }}
                 <b>{{ form.name.label }}:</b> {{ form.name(size=20) }}<br>
@@ -24,20 +16,14 @@
         </td>
 
         <td>
-            {# Standard image #}
-            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros"> #}
+            {# sizing using percentages and Styles #}
+            <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" class="picture_class"> <br><br>
 
-            {# sizing using width #}
-            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100"> #}
-
-            {# sizing using height #}
-            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" height="100"> #}
-
-            {# sizing using both #}
-            {# <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" width="100" height="100"> #}
+            {# adding another picture #}
+            <img  src="{{ url_for('static', filename='Screenshot (4).png') }}" alt="Nathan and Zack, Breck" class="picture_class">
         </td>
 
-         <td>
+         <td class="side">
             and then the spotify API here
         </td>
     </tr>
