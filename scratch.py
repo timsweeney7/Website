@@ -1,15 +1,11 @@
-class Post():
-    #text = None
-    def __init__(self, author, text):
-        self.text = text
-        self.author = author
+from app.models import Post
+from app import db
 
-    def __repr__(self):
-        return self.author + ': ' + self.text
+all_posts = Post.query.filter()
+#print(all_posts)
 
+all_posts2 = all_posts.order_by(Post.timestamp.desc())
+#print(all_posts2)
 
-post1 = Post('hoodie alan', 'ill give it to you no interruption')
-post2 = Post('jack harlow', 'whats poppin')
-post3 = Post('lil wayne', 'same old throne new dragons')
-
-print(post1)
+all_posts3 = Post.query.order_by(Post.timestamp.desc())
+print(all_posts3.all())

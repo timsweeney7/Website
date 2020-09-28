@@ -2,7 +2,8 @@
 #  This file is for defining 'classes' within the context of the website
 #
 #####################################################################
-
+from app import db
+from datetime import datetime
 
 class ChatRoom():
     var = 'test'
@@ -12,17 +13,11 @@ class User():
     var = 'test'
 
 
-class Post():
-    def __init__(self, author, text):
-        self.author = author
-        self.text = text
+class Post(db.Model):
+
+    author = db.Column(db.String(64), index=True, primary_key=True)
+    text = db.Column(db.String(256), index=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 
     def __repr__(self):
         return self.author + ': ' + self.text
-
-
-post1 = Post('hoodie alan', 'ill give it to you no interruption')
-post2 = Post('jack harlow', 'whats poppin')
-post3 = Post('lil wayne', 'same old throne new dragons')
-
-test_posts = [post1, post2, post3]
