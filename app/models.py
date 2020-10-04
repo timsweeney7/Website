@@ -4,6 +4,7 @@
 #####################################################################
 from app import db
 from datetime import datetime
+from app.forms import DeletePostForm
 
 class ChatRoom():
     var = 'test'
@@ -14,10 +15,11 @@ class User():
 
 
 class Post(db.Model):
-
     author = db.Column(db.String(64), index=True, primary_key=True)
     text = db.Column(db.String(256), index=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
+    #delete_form = DeletePostForm
 
     def __repr__(self):
         return self.author + ': ' + self.text
+

@@ -21,9 +21,11 @@ def home_page():
         db.session.commit()
         return redirect(url_for('home_page'))
     posts = Post.query.order_by(Post.timestamp.desc()).all()
-    if delete_form.validate_on_submit():
-        return redirect(url_for('home_page'))
+    # if Post.delete_form.validate_on_submit():
+    #    return redirect(url_for('home_page'))
+    #return render_template('home.html', home_feed=posts, form=post_form, delete_form=Post.delete_form)
     return render_template('home.html', home_feed=posts, form=post_form, delete_form=delete_form)
+
 
 
 @app.route('/scratch', methods=['GET'])

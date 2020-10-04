@@ -33,8 +33,13 @@
     td.right{
         width: 20%;
     }
-
-
+    .hide {
+        display: none;
+    }
+    .myDIV:hover .hide {
+        display: block;
+        color: red;
+    }
 </style>
 <head>
     <meta charset="UTF-8">
@@ -85,5 +90,13 @@
         </tr>
     </table>
 
+    <h2>Display an Element on Hover</h2>
+    <div class="myDIV">
+        Hover over me. <br>
+        <div class="hide">
+            I am shown when someone hovers over the div above.
+        </div>
+        boobs
+    </div>
 </body>
 </html>

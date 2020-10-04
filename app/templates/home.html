@@ -11,7 +11,14 @@
                 {{ form.submit }}<br><br>
             </form>
             {% for post in home_feed %}
+            <div class="myDIV">
                 <b>{{ post.author }}:</b> {{ post.text }} <br>
+                <div class="hidden">
+                    <form method="post">
+                        {{ delete_form.button }}
+                    </form>
+                </div>
+            </div>
             {% endfor %}
         </td>
 
