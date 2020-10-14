@@ -40,6 +40,15 @@
 </head>
 <body>
     <h1>WhatsPoppin.gov</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     {% block posts %}{% endblock %}
 </body>
 </html>

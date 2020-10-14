@@ -5,7 +5,7 @@
 #####################################################################
 
 from app import app, db
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash
 from app.models import Post
 from app.forms import PostForm, DeletePostForm
 from wtforms import SubmitField
@@ -21,11 +21,17 @@ def home_page():
         db.session.commit()
         return redirect(url_for('home_page'))
     posts = Post.query.order_by(Post.timestamp.desc()).all()
+
     # if Post.delete_form.validate_on_submit():
     #    return redirect(url_for('home_page'))
-    #return render_template('home.html', home_feed=posts, form=post_form, delete_form=Post.delete_form)
+    # return render_template('home.html', home_feed=posts, form=post_form, delete_form=Post.delete_form)
     return render_template('home.html', home_feed=posts, form=post_form, delete_form=delete_form)
 
+
+@app.route('/delete-post/<post_id>', methods=['GET'])
+def delete_post(post_id):
+    flash('Hi-diddly-ho neighbor!')
+    return redirect(url_for('home_page'))
 
 
 @app.route('/scratch', methods=['GET'])

@@ -17,3 +17,7 @@ class PostForm(FlaskForm):
 
 class DeletePostForm(FlaskForm):
     button = SubmitField('Delete')
+
+    @staticmethod
+    def post_to_delete(self, id):
+        self.id = id
