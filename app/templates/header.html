@@ -26,12 +26,22 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-     }
+    }
+    video.video_class{
+        width: 600px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .hidden{
         display: none;
-     }
+    }
     .myDIV:hover .hidden{
         display: block;
+    }
+    .footer{
+        text-align: center;
+        color: gray;
     }
 </style>
 <head>
@@ -49,6 +59,14 @@
         {% endif %}
     {% endwith %}
 
-    {% block posts %}{% endblock %}
+
+    {% block body %}{% endblock %}
+
+    <br> <br>
+    <div class="footer">
+        A Tim Sweeney enterprise - 2020 <br>
+        @ogtimsweeney - @itsTimSweeney <br>
+        get jiggy wit it <br>
+    </div>
 </body>
 </html>

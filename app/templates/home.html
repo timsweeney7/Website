@@ -1,6 +1,6 @@
 {% extends 'header.html' %}
 
-{% block posts %}
+{% block body %}
 <table>
     <tr>
         <td class="side">
@@ -23,6 +23,12 @@
         </td>
 
         <td>
+
+            <video class="video_class" controls>
+                <source src="{{ url_for('static', filename='Breck 2020 Sick Edit Bro.mp4') }}" type="video/mp4">
+                Your browser does not support HTML video.
+            </video> <br> <br>
+
             {# sizing using percentages and Styles #}
             <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" class="picture_class"> <br><br>
 

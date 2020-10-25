@@ -21,16 +21,14 @@ def home_page():
         db.session.commit()
         return redirect(url_for('home_page'))
     posts = Post.query.order_by(Post.timestamp.desc()).all()
-
-    # if Post.delete_form.validate_on_submit():
-    #    return redirect(url_for('home_page'))
-    # return render_template('home.html', home_feed=posts, form=post_form, delete_form=Post.delete_form)
     return render_template('home.html', home_feed=posts, form=post_form, delete_form=delete_form)
 
 
 @app.route('/delete-post/<post_id>', methods=['GET'])
 def delete_post(post_id):
-    flash('Hi-diddly-ho neighbor!')
+    post_to_delete = Post.query.filter_by(id=post_id).first_or_404()
+    db.session.delete(post_to_delete)
+    db.session.commit()
     return redirect(url_for('home_page'))
 
 
