@@ -1,6 +1,13 @@
 {% extends 'header.html' %}
 
 {% block body %}
+
+<form method = "post" enctype="multipart/form-data" class="file_form">
+    {{ form.csrf_token }}
+    {{ upload_file_form.file }}  {{ upload_file_form.button }}
+</form>
+<br>
+
 <table>
     <tr>
         <td class="side">
@@ -10,12 +17,12 @@
                 <b>{{ form.text.label }}:</b> {{ form.text }}<br>
                 {{ form.submit }}<br><br>
             </form>
-            {% for post in home_feed %}
+            {% for comment in home_feed %}
             <div class="myDIV">
-                <b>{{ post.author }}:</b> {{ post.text }} <br>
+                <b>{{ comment.author }}:</b> {{ comment.text }} <br>
                 <div class="hidden">
-                    <form method="post">
-                        <a href="/delete-post/{{post.id}}">Delete</a>
+                    <form method="get">
+                        <a href="/delete-comment/{{comment.id}}">Delete</a>
                     </form>
                 </div>
             </div>
