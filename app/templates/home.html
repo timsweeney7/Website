@@ -2,9 +2,10 @@
 
 {% block body %}
 
-<form method = "post" enctype="multipart/form-data" class="file_form">
+<form action={{url_for('upload')}} method="post" enctype="multipart/form-data" class="file_form">
     {{ form.csrf_token }}
-    {{ upload_file_form.file }}  {{ upload_file_form.button }}
+    <input  type="file" name="pic" />
+    <input  type="submit" value="Upload a file"/>
 </form>
 <br>
 

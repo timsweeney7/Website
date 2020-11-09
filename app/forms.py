@@ -25,6 +25,6 @@ class DeleteCommentForm(FlaskForm):
 
 
 class UploadFileForm(FlaskForm):
-    #validators = [FileRequired()]
+    validators = [FileRequired()]
     file = FileField()
     button = SubmitField('Upload')

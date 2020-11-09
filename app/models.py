@@ -21,7 +21,13 @@ class Comment(db.Model):
     text = db.Column(db.String(256), index=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
 
-
     def __repr__(self):
         return self.author + ': ' + self.text
 
+
+class Img(db.Model):
+    id = db.Column(db.Integer, primary_key=True, index=True)
+    file_name = db.Column(db.Text, index=True)
+    img = db.Column(db.Text, nullable=False)
+    mimetype = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
