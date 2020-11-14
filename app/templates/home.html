@@ -34,13 +34,12 @@
             {% for img in images %}
             <div class="picture_class">
                 <img src="http://localhost:5000/image/{{img.id}}" alt={{img.file_name}} class="picture_class">
+                <b>{{img.file_name}}</b>
             </div>
             <br>
             {% endfor %}
         </td>
-        <td class="side">
-            and then the spotify API here
-        </td>
+
     </tr>
 </table>
 {% endblock %}
