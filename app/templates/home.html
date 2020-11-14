@@ -29,22 +29,16 @@
             </div>
             {% endfor %}
         </td>
-
         <td>
-
-            <video class="video_class" controls>
-                <source src="{{ url_for('static', filename='Breck 2020 Sick Edit Bro.mp4') }}" type="video/mp4">
-                Your browser does not support HTML video.
-            </video> <br> <br>
-
-            {# sizing using percentages and Styles #}
-            <img  src="{{ url_for('static', filename='IMG_1244.JPG') }}" alt="The bros" class="picture_class"> <br><br>
-
-            {# adding another picture #}
-            <img  src="{{ url_for('static', filename='Screenshot (4).png') }}" alt="Nathan and Zack, Breck" class="picture_class">
+            <br>
+            {% for img in images %}
+            <div class="picture_class">
+                <img src="http://localhost:5000/image/{{img.id}}" alt={{img.file_name}} class="picture_class">
+            </div>
+            <br>
+            {% endfor %}
         </td>
-
-         <td class="side">
+        <td class="side">
             and then the spotify API here
         </td>
     </tr>

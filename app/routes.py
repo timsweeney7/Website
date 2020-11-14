@@ -5,7 +5,7 @@
 #####################################################################
 
 from app import app, db
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, Response
 from app.models import Comment, Img
 from app.forms import CommentForm, DeleteCommentForm, UploadFileForm
 from werkzeug.utils import secure_filename
@@ -20,7 +20,8 @@ def home_page():
     upload_file_form = UploadFileForm()
 
     posts = Comment.query.order_by(Comment.timestamp.desc()).all()
-    images = Img.query.order_by(Comment.timestamp.desc()).all()
+
+    images = Img.query.order_by(Img.timestamp.desc()).all()
 
     if comment_form.validate_on_submit():
         new_post = Comment(author=comment_form.name.data, text=comment_form.text.data)
@@ -64,3 +65,10 @@ def upload():
     db.session.commit()
 
     return redirect(url_for('home_page'))
+
+
+@app.route('/image/<db_image_id>')
+def imageRoute(db_image_id):
+    image_data = Img.query.filter_by(id=db_image_id).first_or_404()
+    print(image_data.mimetype)
+    return Response(image_data.img, mimetype=image_data.mimetype)

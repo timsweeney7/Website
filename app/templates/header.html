@@ -54,9 +54,11 @@
     <meta charset="UTF-8">
     <title>timsweeney.club</title>
     <link href="https://fonts.googleapis.com/css2?family=Martel:wght@300;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='smiles.ico')}}" />
 </head>
 <body>
-<h1>whatifgodwasoneofus.sex.com</h1>
+<h1><img src="{{ url_for('static', filename='smiles_inv.png') }}" alt="Smile!" style="width:50px; vertical-align: text-bottom;">
+    &ensp; weed420sex.sports.gov</h1>
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
