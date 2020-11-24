@@ -9,4 +9,5 @@ from config import DefaultConfig
 
 print(os.path.join(DefaultConfig.UPLOAD_FOLDER, 'test.txt'))
 f = open(os.path.join(DefaultConfig.UPLOAD_FOLDER, 'test.txt'), 'w')
+f.write('hello bitches')
 f.close()

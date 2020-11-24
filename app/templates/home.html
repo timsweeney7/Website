@@ -32,10 +32,18 @@
         <td>
             <br>
             {% for img in images %}
-            <div class="picture_class">
-                <img src="http://localhost:5000/image/{{img.id}}" alt={{img.file_name}} class="picture_class">
-                <b>{{img.file_name}}</b>
-            </div>
+                {% if img.mimetype == 'image/jpeg' %}
+                    <div class="picture_class">
+                        <img src="{{ url_for('static', filename=img.file_name) }}" alt={{img.file_name}} class="picture_class">
+                        <b>{{img.file_name}}</b>
+                    </div>
+                {% elif img.mimetype == 'video/mp4' %}
+                    <div class="picture_class">
+                        <video src="{{ url_for('static', filename=img.file_name) }}" alt={{img.file_name}} class="picture_class"></video>
+                        <b>{{img.file_name}}</b>
+                    </div>
+                {% endif %}
+
             <br>
             {% endfor %}
         </td>

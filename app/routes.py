@@ -60,7 +60,10 @@ def upload():
 
     filename = secure_filename(pic.filename)
     mimetype = pic.mimetype
-    img = Img(img=pic.read(), mimetype=mimetype, file_name=filename)
+    image_file = open(os.path.join(DefaultConfig.UPLOAD_FOLDER, filename), 'wb')
+    image_file.write(pic.read())
+    image_file.close()
+    img = Img(mimetype=mimetype, file_name=filename)
     db.session.add(img)
     db.session.commit()
 

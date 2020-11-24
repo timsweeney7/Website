@@ -28,6 +28,5 @@ class Comment(db.Model):
 class Img(db.Model):
     id = db.Column(db.Integer, primary_key=True, index=True)
     file_name = db.Column(db.Text, index=True)
-    img = db.Column(db.Text, nullable=False)
     mimetype = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())
