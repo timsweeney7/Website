@@ -8,7 +8,6 @@
     <input  type="submit" value="Upload a file"/>
 </form>
 <br>
-
 <table>
     <tr>
         <td class="side">
@@ -32,19 +31,24 @@
         <td>
             <br>
             {% for img in images %}
-                {% if img.mimetype == 'image/jpeg' %}
-                    <div class="picture_class">
+            <div class="centered">
+                {% if img.mimetype == 'image/jpeg' or img.mimetype == 'image/png'%}
                         <img src="{{ url_for('static', filename=img.file_name) }}" alt={{img.file_name}} class="picture_class">
                         <b>{{img.file_name}}</b>
-                    </div>
                 {% elif img.mimetype == 'video/mp4' %}
-                    <div class="picture_class">
-                        <video src="{{ url_for('static', filename=img.file_name) }}" alt={{img.file_name}} class="picture_class"></video>
+                        <video src="{{ url_for('static', filename=img.file_name) }}" alt={{img.file_name}}
+                               class="video_class" controls>
+                            Your browser does not support HTML video.
+                        </video>
                         <b>{{img.file_name}}</b>
-                    </div>
                 {% endif %}
-
-            <br>
+                <form action="{{url_for('delete_img')}}" method="post">
+                    {{ form.csrf_token }}
+                    <input type="hidden" id="img_id" name="img_id" value="{{ img.id }}">
+                    <input type="submit" value="Delete">
+                </form>
+                <br><br>
+            </div>
             {% endfor %}
         </td>
 

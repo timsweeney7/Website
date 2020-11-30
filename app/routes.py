@@ -6,6 +6,7 @@
 
 from app import app, db
 from flask import render_template, redirect, url_for, flash, request, Response
+from flask_login import current_user, login_user
 from app.models import Comment, Img
 from app.forms import CommentForm, DeleteCommentForm, UploadFileForm
 from werkzeug.utils import secure_filename
@@ -70,8 +71,26 @@ def upload():
     return redirect(url_for('home_page'))
 
 
-@app.route('/image/<db_image_id>')
-def imageRoute(db_image_id):
-    image_data = Img.query.filter_by(id=db_image_id).first_or_404()
-    print(image_data.mimetype)
-    return Response(image_data.img, mimetype=image_data.mimetype)
+@app.route('/delete-img', methods=['POST'])
+def delete_img():
+    img_id = request.form['img_id']
+    img_to_delete = Img.query.filter_by(id=img_id).first_or_404()
+    img_file_name = img_to_delete.file_name
+    print(img_file_name)
+    if os.path.exists(os.path.join(DefaultConfig.UPLOAD_FOLDER, img_file_name)):
+        print('here')
+        os.remove(os.path.join(DefaultConfig.UPLOAD_FOLDER, img_file_name))
+    else:
+        print("The file does not exist")
+    db.session.delete(img_to_delete)
+    db.session.commit()
+
+    return redirect(url_for('home_page'))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login_user('Tim')
+    return 'hello'
+
+
