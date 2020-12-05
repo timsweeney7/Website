@@ -2,27 +2,31 @@
 
 {% block body %}
 
-<form action={{url_for('upload')}} method="post" enctype="multipart/form-data" class="file_form">
-    {{ form.csrf_token }}
-    <input  type="file" name="pic" />
-    <input  type="submit" value="Upload a file"/>
-</form>
+{% if current_user.is_authenticated %}
+    <form action={{url_for('upload')}} method="post" enctype="multipart/form-data" class="file_form">
+        {{ form.csrf_token }}
+        <input  type="file" name="pic" />
+        <input  type="submit" value="Upload a file"/>
+    </form>
+{% endif %}
 <br>
 <table>
     <tr>
         <td class="side">
             <form method="post">
                 {{ form.csrf_token }}
-                <b>{{ form.name.label }}:</b> {{ form.name(size=20) }}<br>
-                <b>{{ form.text.label }}:</b> {{ form.text }}<br>
+                <b>{{ form.name.label }}:</b> <br> {{ form.name(size=20) }}<br>
+                <b>{{ form.text.label }}:</b> <br>{{ form.text }}<br>
                 {{ form.submit }}<br><br>
             </form>
             {% for comment in home_feed %}
             <div class="myDIV">
-                <b>{{ comment.author }}:</b> {{ comment.text }} <br>
+                <b>{{ comment.author }}:</b> {{ comment.text }}
                 <div class="hidden">
                     <form method="get">
-                        <a href="/delete-comment/{{comment.id}}">Delete</a>
+                        {% if current_user.is_authenticated %}
+                            <a href="/delete-comment/{{comment.id}}">Delete</a>
+                        {% endif %}
                     </form>
                 </div>
             </div>
@@ -42,11 +46,15 @@
                         </video>
                         <b>{{img.file_name}}</b>
                 {% endif %}
-                <form action="{{url_for('delete_img')}}" method="post">
-                    {{ form.csrf_token }}
-                    <input type="hidden" id="img_id" name="img_id" value="{{ img.id }}">
-                    <input type="submit" value="Delete">
-                </form>
+
+                {% if current_user.is_authenticated %}
+                    <form action="{{url_for('delete_img')}}" method="post">
+                        {# this doesn't actually do anything {{ form.csrf_token }} #}
+                        <input type="hidden" id="img_id" name="img_id" value="{{ img.id }}">
+                        <input type="submit" value="Delete">
+                    </form>
+                {% endif %}
+
                 <br><br>
             </div>
             {% endfor %}

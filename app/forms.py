@@ -28,3 +28,14 @@ class UploadFileForm(FlaskForm):
     validators = [FileRequired()]
     file = FileField()
     button = SubmitField('Upload')
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = StringField('Password', validators=[DataRequired()])
+    submit = SubmitField('Enter')
+
+
+class LogoutForm(FlaskForm):
+    logout = SubmitField('Log out')
+

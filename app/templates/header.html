@@ -8,6 +8,9 @@
         color: white;
         font-family: 'Martel', serif;
     }
+    div.centered{
+        text-align: center;
+    }
     table{
         border: 3px solid black;
         margin-left: auto;
@@ -57,7 +60,8 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='smiles.ico')}}" />
 </head>
 <body>
-<h1><img src="{{ url_for('static', filename='smiles_inv.png') }}" alt="Smile!" style="width:50px; vertical-align: text-bottom;">
+<h1>
+    <img src="{{ url_for('static', filename='smiles_inv.png') }}" alt="Smile!" style="width:50px; vertical-align: text-bottom;">
     &ensp; weed420sex.sports.gov</h1>
 
     {% with messages = get_flashed_messages() %}
@@ -74,7 +78,9 @@
     <div class="footer">
         A Tim Sweeney enterprise - 2020 <br>
         @ogtimsweeney - @itsTimSweeney <br>
-        get jiggy with it <br>
+        <a href="{{ url_for('login') }}">
+            get jiggy with it <br>
+        </a>
     </div>
 </body>
 </html>

@@ -4,14 +4,19 @@
 #
 #####################################################################
 
-from app import app, db
+from app import app, db, login_manager
 from flask import render_template, redirect, url_for, flash, request, Response
-from flask_login import current_user, login_user
-from app.models import Comment, Img
-from app.forms import CommentForm, DeleteCommentForm, UploadFileForm
+from flask_login import current_user, login_user, logout_user
+from app.models import Comment, Img, User
+from app.forms import CommentForm, DeleteCommentForm, UploadFileForm, LoginForm, LogoutForm
 from werkzeug.utils import secure_filename
 from config import DefaultConfig
 import os
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,7 +26,6 @@ def home_page():
     upload_file_form = UploadFileForm()
 
     posts = Comment.query.order_by(Comment.timestamp.desc()).all()
-
     images = Img.query.order_by(Img.timestamp.desc()).all()
 
     if comment_form.validate_on_submit():
@@ -78,7 +82,6 @@ def delete_img():
     img_file_name = img_to_delete.file_name
     print(img_file_name)
     if os.path.exists(os.path.join(DefaultConfig.UPLOAD_FOLDER, img_file_name)):
-        print('here')
         os.remove(os.path.join(DefaultConfig.UPLOAD_FOLDER, img_file_name))
     else:
         print("The file does not exist")
@@ -90,7 +93,24 @@ def delete_img():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    login_user('Tim')
-    return 'hello'
+
+    login_form = LoginForm()
+    logout_form = LogoutForm()
+
+    if login_form.validate_on_submit():
+        user = User.query.filter_by(username=login_form.username.data).first()
+        if user is None or not user.check_password(login_form.password.data):
+            flash('Incorrect')
+            return redirect(url_for('login'))
+        else:
+            login_user(user)
+            flash('Welcome back..')
+            return redirect(url_for('home_page'))
+
+    if logout_form.validate_on_submit():
+        logout_user()
+        return redirect(url_for('home_page'))
+
+    return render_template('login.html', login_form=login_form, logout_form=logout_form)
 
 

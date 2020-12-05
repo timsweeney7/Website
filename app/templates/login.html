@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    div.centered{
+        text-align: center;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>timsweeney.club</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    {# <link href="https://fonts.googleapis.com/css2?family=Martel:wght@300;800&display=swap" rel="stylesheet"> #}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='smiles.ico')}}" />
+</head>
+<body>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+<div class="centered">
+
+    Yoooo this section is only for me. Get outa here. <br>
+    <br>
+    <br>
+    <br>
+    <img src="{{ url_for('static', filename='smiles.png') }}" alt="Smile!" class="picture_class">
+
+    <form method="post">
+        {{ login_form.csrf_token }}
+        {{ login_form.username.label }} : {{ login_form.username(size=20) }}<br>
+        {{ login_form.password.label }} : {{ login_form.password(size=20) }}<br>
+        {{ login_form.submit }} <br>
+    </form>
+
+    {% if current_user.is_authenticated %}
+        <br>
+        <br>
+        <br>
+        <form method="post">
+            {{ logout_form.csrf_token }}
+            {{ logout_form.logout }}
+        </form>
+    {% endif %}
+</div>
+
+</body>
+</html>
