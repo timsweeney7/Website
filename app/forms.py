@@ -5,7 +5,7 @@
 
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, PasswordField
 from wtforms.validators import DataRequired
 from wtforms.fields.html5 import URLField
 
@@ -32,7 +32,7 @@ class UploadFileForm(FlaskForm):
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
-    password = StringField('Password', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Enter')
 
 
