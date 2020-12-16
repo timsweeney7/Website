@@ -6,12 +6,12 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 
-app = Flask(__name__)
-app.config.from_object(DefaultConfig)
-Bootstrap(app)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+application = Flask(__name__)
+application.config.from_object(DefaultConfig)
+Bootstrap(application)
+db = SQLAlchemy(application)
+migrate = Migrate(application, db)
 login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager.init_app(application)
 
-from app import routes, models
+from application import routes, models

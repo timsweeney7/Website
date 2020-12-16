@@ -2,7 +2,7 @@ import os
 from config import DefaultConfig
 
 
-#file_path = 'C:\\Website\\app\\static\\test.txt'
+#file_path = 'C:\\Website\\application\\static\\test.txt'
 #f = open(file_path, 'w')
 #f.close()
 

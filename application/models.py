@@ -2,7 +2,7 @@
 #  This file is for defining 'classes' within the context of the website
 #
 #####################################################################
-from app import db
+from application import db
 from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash

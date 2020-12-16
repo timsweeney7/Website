@@ -4,11 +4,11 @@
 #
 #####################################################################
 
-from app import app, db, login_manager
+from application import application, db, login_manager
 from flask import render_template, redirect, url_for, flash, request, Response
 from flask_login import current_user, login_user, logout_user
-from app.models import Comment, Img, User
-from app.forms import CommentForm, DeleteCommentForm, UploadFileForm, LoginForm, LogoutForm
+from application.models import Comment, Img, User
+from application.forms import CommentForm, DeleteCommentForm, UploadFileForm, LoginForm, LogoutForm
 from werkzeug.utils import secure_filename
 from config import DefaultConfig
 import os
@@ -19,7 +19,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@app.route('/', methods=['GET', 'POST'])
+@application.route('/', methods=['GET', 'POST'])
 def home_page():
     comment_form = CommentForm()
     delete_comment_form = DeleteCommentForm()
@@ -39,7 +39,7 @@ def home_page():
 
 
 #TODO: Fix delete comment form so that it uses post and not get. This will make it secure.
-@app.route('/delete-comment/<comment_id>', methods=['GET'])
+@application.route('/delete-comment/<comment_id>', methods=['GET'])
 def delete_comment(comment_id):
     comment_to_delete = Comment.query.filter_by(id=comment_id).first_or_404()
     db.session.delete(comment_to_delete)
@@ -47,7 +47,7 @@ def delete_comment(comment_id):
     return redirect(url_for('home_page'))
 
 
-@app.route('/scratch', methods=['GET'])
+@application.route('/scratch', methods=['GET'])
 def scratch_page():
     # get template
     # render the template
@@ -55,7 +55,7 @@ def scratch_page():
     return render_template('scratch.html')
 
 
-@app.route('/upload', methods=['POST'])
+@application.route('/upload', methods=['POST'])
 def upload():
     pic = request.files['pic']
 
@@ -75,7 +75,7 @@ def upload():
     return redirect(url_for('home_page'))
 
 
-@app.route('/delete-img', methods=['POST'])
+@application.route('/delete-img', methods=['POST'])
 def delete_img():
     img_id = request.form['img_id']
     img_to_delete = Img.query.filter_by(id=img_id).first_or_404()
@@ -91,7 +91,7 @@ def delete_img():
     return redirect(url_for('home_page'))
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
 
     login_form = LoginForm()
