@@ -14,6 +14,10 @@
         font-family: 'Do Hyeon', sans-serif;
         font-size: 20px;
     }
+    body{
+        background-image: url( {{ url_for('static', filename="noisy-texture.png") }} );
+        background-color: #ffffff;
+    }
     div.centered{
         text-align: center;
     }
@@ -21,19 +25,20 @@
         border: 3px solid black;
         margin-left: auto;
         margin-right: auto;
+        table-layout: fixed;
         width: 95%
-
     }
     td{
         border: 3px solid black;
         font-family: 'Do Hyeon', sans-serif;
+        background: white
     }
     td.side{
         width: 20%;
         vertical-align: text-top;
     }
     img.picture_class{
-        width: 700px;
+        width: 850px;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -53,7 +58,7 @@
     }
     .footer{
         text-align: center;
-        color: gray;
+        color: white;
     }
     .file_form{
         text-align: right;
@@ -95,7 +100,7 @@
     <div class="footer">
         A Tim Sweeney enterprise - 2020 <br>
         @ogtimsweeney - @itsTimSweeney <br>
-        <a href="{{ url_for('login') }}" style="text-decoration: none; color: gray;">
+        <a href="{{ url_for('login') }}" style="text-decoration: none; color: white;">
             get jiggy with it <br>
         </a>
     </div>
